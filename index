@@ -1,5 +1,216 @@
-git init
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/tu-usuario/nombre-repositorio.git
-git push -u origin main
+# Estructura de archivos:
+
+index.html
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejecución Estratégica</title>
+    <meta name="description" content="Framework de ejecución estratégica para equipos directivos">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-gray-800">Ejecución Estratégica</div>
+                <div>
+                    <a href="#framework" class="mx-4 text-gray-600 hover:text-gray-800">Framework</a>
+                    <a href="#about" class="mx-4 text-gray-600 hover:text-gray-800">Acerca de</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+        <!-- Hero Section -->
+        <section class="text-center py-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4 animate__animated animate__fadeIn">
+                Framework de Ejecución Estratégica
+            </h1>
+            <p class="text-xl text-gray-600 mb-8 animate__animated animate__fadeIn animate__delay-1s">
+                Transformando la planificación en resultados tangibles
+            </p>
+        </section>
+
+        <!-- Framework Section -->
+        <section id="framework" class="py-12">
+            <div id="app"></div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-lg font-semibold">Contacto</h3>
+                    <p class="mt-2">Email: tu@email.com</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Síguenos</h3>
+                    <div class="mt-2">
+                        <a href="#" class="mr-4 hover:text-gray-300">LinkedIn</a>
+                        <a href="#" class="mr-4 hover:text-gray-300">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-400">
+                <p>&copy; 2024 Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="js/app.js" type="text/babel"></script>
+</body>
+</html>
+```
+
+css/styles.css
+```css
+/* Estilos adicionales personalizados */
+.card-hover {
+    transition: transform 0.3s ease-in-out;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.5s ease-out;
+}
+```
+
+js/app.js
+```javascript
+const { useState } = React;
+
+const Card = ({ icon: Icon, title, points, color }) => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+        <div 
+            className={`bg-white rounded-lg shadow-md p-6 card-hover ${isHovered ? 'shadow-lg' : ''}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <div className="flex items-center mb-4">
+                <Icon className={`w-8 h-8 ${color}`} />
+                <h3 className="text-xl font-semibold ml-3">{title}</h3>
+            </div>
+            <ul className="space-y-2">
+                {points.map((point, index) => (
+                    <li key={index} className="text-gray-600 flex items-center">
+                        <span className="mr-2">•</span>
+                        {point}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+const App = () => {
+    const elements = [
+        {
+            title: "Claridad y Propósito",
+            points: [
+                "Definir el 'para qué' de cada iniciativa",
+                "Alinear acciones con intención",
+                "Establecer prioridades claras"
+            ],
+            color: "text-blue-500"
+        },
+        // ... [Resto de los elementos]
+    ];
+
+    return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {elements.map((element, index) => (
+                <Card key={index} {...element} />
+            ))}
+        </div>
+    );
+};
+
+ReactDOM.render(<App />, document.getElementById('app'));
+```
+
+.gitignore
+```
+.DS_Store
+node_modules/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+```
+
+README.md
+```markdown
+# Framework de Ejecución Estratégica
+
+Este repositorio contiene un framework interactivo para la ejecución estratégica, diseñado para equipos directivos que buscan transformar su planificación en resultados tangibles.
+
+## Características
+
+- Framework visual interactivo
+- Componentes React modulares
+- Diseño responsivo
+- Animaciones y transiciones suaves
+
+## Instalación
+
+1. Clona el repositorio:
+```bash
+git clone https://github.com/tu-usuario/strategic-execution-framework.git
+```
+
+2. Abre index.html en tu navegador o configura un servidor local.
+
+## Uso con GitHub Pages
+
+1. Ve a la configuración del repositorio
+2. En la sección "GitHub Pages", selecciona la rama main
+3. Guarda los cambios
+
+El sitio estará disponible en: https://tu-usuario.github.io/strategic-execution-framework
+
+## Personalización
+
+- Modifica `js/app.js` para actualizar el contenido
+- Ajusta `css/styles.css` para personalizar el diseño
+- Actualiza `index.html` para cambiar la estructura
+
+## Licencia
+
+MIT License
+
+## Contribuir
+
+1. Fork el proyecto
+2. Crea tu rama de características
+3. Commit tus cambios
+4. Push a la rama
+5. Abre un Pull Request
+```
